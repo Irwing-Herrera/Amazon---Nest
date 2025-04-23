@@ -39,16 +39,16 @@ $ npm install
 $ npm run start:dev
 ```
 
-## Levantar imagen de Mongo en Docker
-Desde la terminal del proyecto correr este comando para crear la BD (si no esta creada) y levantar el proceso de Mongo
+## Levantar imagen de Postgres en Docker
+Desde la terminal del proyecto correr este comando para crear la BD (si no esta creada)
 
 ```bash
 $ docker-compose up -d
 ```
 
 ## TablePlus
-Ingresar esta coneccion una vez que tu Docker este arriba con la imagen de mongodb
+Ingresar esta coneccion una vez que tu Docker este arriba con la imagen de postgres
 
 ```bash
-$ mongodb://localhost:27017/amazon
+$ mongodb://localhost:5435/amazon
 ```
