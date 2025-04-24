@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import * as bcrypt from 'bcrypt';
@@ -11,6 +11,8 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
+
+  private readonly logger = new Logger('AuthService');
 
   constructor(
     @InjectRepository(User)
@@ -68,6 +70,9 @@ export class AuthService {
   }
 
   private handleDBErrors( error: any ): never {
+
+    this.logger.error(error)
+
     if ( error.code === '23505' ) {
       throw new BadRequestException( error.detail );
     }
