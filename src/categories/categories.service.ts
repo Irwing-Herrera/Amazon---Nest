@@ -21,7 +21,7 @@ export class CategoriesService {
 
   async findById(id: number): Promise<any> {
     try {
-      await this.categoryRepository.findOneBy({ id })
+      return await this.categoryRepository.findOneBy({ id })
     } catch (error) {
       throw new NotFoundException(`Category ${id} not exist in DB`)  
     }
