@@ -16,10 +16,9 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Amazon')
-    .setDescription('The cats API description')
+    .setTitle('Amazon REST FULL API')
+    .setDescription('Endpoint')
     .setVersion('1.0')
-    .addTag('amazon')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('', app, documentFactory);

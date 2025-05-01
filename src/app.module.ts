@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -19,10 +20,10 @@ import { CategoriesModule } from './categories/categories.module';
       autoLoadEntities: true,
       synchronize: true
     }),
-    
-    AuthModule,
     ProductsModule,
-    CategoriesModule
+    CategoriesModule,
+    SeedModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

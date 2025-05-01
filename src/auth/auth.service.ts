@@ -69,8 +69,20 @@ export class AuthService {
     return this.jwtService.sign( payload );
   }
 
-  private handleDBErrors( error: any ): never {
+  async deleteAllUsers() {
+    const query = this.userRepository.createQueryBuilder('users');
 
+    try {
+      return await query.delete()
+                        .where({})
+                        .execute();
+
+    } catch (error) {
+      this.handleDBErrors(error);
+    }
+  }
+
+  private handleDBErrors(error: any): never {
     this.logger.error(error)
 
     if ( error.code === '23505' ) {

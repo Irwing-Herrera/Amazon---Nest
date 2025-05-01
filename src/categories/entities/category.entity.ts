@@ -1,13 +1,12 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Product } from 'src/products/entities/product.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Product } from 'src/products/entities/product.entity';
 
 @Entity()
 export class Category {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ApiProperty({ example: 1, description: 'The age of the Cat' })
     @Column('text', { unique: true })
     name: string;
 

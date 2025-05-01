@@ -31,4 +31,26 @@ export class CategoriesService {
     const category = this.categoryRepository.create(createCategoryDto)
     return await this.categoryRepository.save(category)
   }
+
+  async deleteAllCategories() {
+    const query = this.categoryRepository.createQueryBuilder('category');
+
+    try {
+      return await query.delete()
+                        .where({})
+                        .execute();
+
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
+  }
+
+  private handleDBExceptions(error: any) {
+    if (error.code === '23505') {
+      throw new BadRequestException(error.detail);
+    }
+      
+    this.logger.error(error)
+    throw new InternalServerErrorException('Unexpected error, check server logs');
+  }
 }
