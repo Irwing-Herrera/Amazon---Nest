@@ -34,6 +34,7 @@ export class ProductsService {
           category: category.name
         }
       } else {
+        this.logger.error('aaaaa')
         throw new InternalServerErrorException(`Category with id: ${createProductDto.categoryId} not found`);
       }
   }
