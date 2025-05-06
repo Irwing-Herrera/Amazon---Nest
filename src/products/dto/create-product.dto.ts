@@ -23,5 +23,4 @@ export class CreateProductDto {
     @IsPositive()
     @IsNotEmpty()
     categoryId: number;
-
 }

@@ -10,6 +10,8 @@ import { Category } from 'src/categories/entities/category.entity';
 import { CategoriesService } from 'src/categories/categories.service';
 import { Product } from 'src/products/entities/product.entity';
 import { AuthService } from 'src/auth/auth.service';
+import { BannersService } from 'src/banners/banners.service';
+import { Banner } from 'src/banners/entities/banner.entity';
 
 
 @Injectable()
@@ -18,6 +20,7 @@ export class SeedService {
   constructor(
     private readonly productsService: ProductsService,
     private readonly categoriesService: CategoriesService,
+    private readonly bannersService: BannersService,
     private readonly authService: AuthService,
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
@@ -26,6 +29,7 @@ export class SeedService {
     await this.deleteTables();
     await this.insertUsers();
     await this.insertCategories();
+    await this.insertBanners();
     await this.insertProducts();
     return 'SEED EXECUTED';
   }
@@ -33,6 +37,8 @@ export class SeedService {
   private async deleteTables() {
     await this.authService.deleteAllUsers();
     await this.productsService.deleteAllProducts();
+    await this.categoriesService.deleteAllCategories();
+    await this.bannersService.deleteAll();
 
     const queryBuilderUsers = this.userRepository.createQueryBuilder();
 
@@ -52,9 +58,19 @@ export class SeedService {
     await this.userRepository.save(seedUsers)
   }
 
-  private async insertCategories() {
-    await this.categoriesService.deleteAllCategories();
+  private async insertBanners() {
+    const banners = initialData.banners;
+    const insertPromises: Promise<Banner>[] = [];
 
+    banners.forEach((banner) => {
+      insertPromises.push(this.bannersService.create(banner));
+    });
+
+    await Promise.all(insertPromises);
+    return true;
+  }
+
+  private async insertCategories() {
     const categories = initialData.categories;
     const insertPromises: Promise<Category>[] = [];
 
@@ -67,8 +83,6 @@ export class SeedService {
   }
 
   private async insertProducts() {
-    await this.productsService.deleteAllProducts();
-
     const products = initialData.products;
     const insertPromises: Promise<Product>[] = [];
 

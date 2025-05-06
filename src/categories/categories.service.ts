@@ -36,10 +36,9 @@ export class CategoriesService {
     const query = this.categoryRepository.createQueryBuilder('category');
 
     try {
-      return await query.delete()
-                        .where({})
-                        .execute();
-
+      await query.delete().where({}).execute();
+      await this.categoryRepository.query(`ALTER SEQUENCE category_id_seq RESTART WITH 1`);
+      return
     } catch (error) {
       this.handleDBExceptions(error);
     }
