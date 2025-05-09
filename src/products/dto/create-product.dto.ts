@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsDate, isDate, IsInt, IsNotEmpty, IsNumber, IsOptional,IsPositive, IsString, MinLength } from 'class-validator';
+import { IsBoolean, IsDate, isDate, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength } from 'class-validator';
 import { Column } from 'typeorm';
 
 export class CreateProductDto {
@@ -8,7 +8,6 @@ export class CreateProductDto {
     @MinLength(1)
     name: string;
 
-    
     @IsString()
     @IsNotEmpty()
     description: string;
@@ -18,31 +17,26 @@ export class CreateProductDto {
     @IsNotEmpty()
     price: number;
 
-
     @IsInt()
     @IsPositive()
     quantity: number;
 
-    @IsString()  
-    @IsOptional() 
+    @IsString()
+    @IsOptional()
     imageUrl: string;
 
     @IsBoolean()
-    isActive:boolean;
+    isActive: boolean;
 
- 
-    
-   
+    @IsOptional()
+    @IsDate()
+    @Type(() => Date)
+    expirationDate: Date;
 
-     @IsOptional()
-     @IsDate()
-     @Type(() => Date)
-     expirationDate: Date;
-    
     @IsString()
     @MinLength(1)
-    tags: string;  
-   
+    tags: string;
+
     @IsNumber()
     @IsPositive()
     @IsNotEmpty()
@@ -63,5 +57,4 @@ export class CreateProductDto {
     @IsPositive()
     @IsNotEmpty()
     categoryId: number;
-
 }

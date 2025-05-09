@@ -14,7 +14,6 @@ interface SeedProduct {
     createdAt: Date;
     updatedAt: Date;
     categoryId: number;
-    // brandId:number;
 }
 
 interface SeedUser {
@@ -130,8 +129,6 @@ export const initialData: SeedData = {
             categoryId: 1,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 3,
@@ -147,7 +144,6 @@ export const initialData: SeedData = {
             categoryId: 2,
             imageUrl: '',
             isActive: true,
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -163,7 +159,6 @@ export const initialData: SeedData = {
             categoryId: 2,
             imageUrl: '',
             isActive: false,
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -179,8 +174,6 @@ export const initialData: SeedData = {
             categoryId: 2,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 1,
@@ -196,8 +189,6 @@ export const initialData: SeedData = {
             categoryId: 3,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -213,8 +204,6 @@ export const initialData: SeedData = {
             categoryId: 3,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 5,
@@ -230,8 +219,6 @@ export const initialData: SeedData = {
             categoryId: 3,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 3,
@@ -247,7 +234,6 @@ export const initialData: SeedData = {
             categoryId: 4,
             imageUrl: '',
             isActive: false,
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -263,8 +249,6 @@ export const initialData: SeedData = {
             categoryId: 4,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 1,
@@ -280,7 +264,6 @@ export const initialData: SeedData = {
             categoryId: 4,
             imageUrl: '',
             isActive: false,
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -296,8 +279,6 @@ export const initialData: SeedData = {
             categoryId: 5,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 5,
@@ -313,8 +294,6 @@ export const initialData: SeedData = {
             categoryId: 5,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,
@@ -330,8 +309,6 @@ export const initialData: SeedData = {
             categoryId: 5,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -347,8 +324,6 @@ export const initialData: SeedData = {
             categoryId: 6,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -364,8 +339,6 @@ export const initialData: SeedData = {
             categoryId: 6,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -381,8 +354,6 @@ export const initialData: SeedData = {
             categoryId: 6,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -398,8 +369,6 @@ export const initialData: SeedData = {
             categoryId: 7,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -415,7 +384,6 @@ export const initialData: SeedData = {
             categoryId: 7,
             imageUrl: '',
             isActive: false,
-
             expirationDate: new Date('2025-12-31'),
             tags: 'Funda',
             rating: 0,
@@ -431,8 +399,6 @@ export const initialData: SeedData = {
             categoryId: 7,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -448,8 +414,6 @@ export const initialData: SeedData = {
             categoryId: 8,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -465,8 +429,6 @@ export const initialData: SeedData = {
             categoryId: 8,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -482,8 +444,6 @@ export const initialData: SeedData = {
             categoryId: 8,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -499,8 +459,6 @@ export const initialData: SeedData = {
             categoryId: 9,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -516,8 +474,6 @@ export const initialData: SeedData = {
             categoryId: 9,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -533,8 +489,6 @@ export const initialData: SeedData = {
             categoryId: 9,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -550,8 +504,6 @@ export const initialData: SeedData = {
             categoryId: 10,
             imageUrl: '',
             isActive: true,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -567,8 +519,6 @@ export const initialData: SeedData = {
             categoryId: 10,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 0,
@@ -584,8 +534,6 @@ export const initialData: SeedData = {
             categoryId: 10,
             imageUrl: '',
             isActive: false,
-
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: 2,

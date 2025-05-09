@@ -7,47 +7,46 @@ export class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column('text', {
-        unique: true,
-    })
+    @Column('text', { unique: true })
     name: string;
+
     @Column('text')
     description: string;
-    @Column('decimal', { precision: 10, scale: 2 })
+
+    @Column({  type: "float", default: 0.0  })
     price: number;
-    @Column('int',{
-        default: 0
-    })
+
+    @Column('int',{ default: 0 })
     quantity: number;
+
     @Column({ nullable: true })
     imageUrl?: string;
+
     @Column({ default: true })
     isActive: boolean;
 
-   
-    // Marca del producto
     @Column({ nullable: true })
     sku?: string;
-     // Código de unidad de mantenimiento (SKU)
+     
     @Column({ type: 'date', nullable: true })
     expirationDate?: Date;
-     // Fecha de caducidad (si aplica)
+
     @Column({ nullable: true, type: 'text' })
     tags?: string; 
-    // Etiquetas o palabras clave (en formato JSON o texto)
+    
     @Column( 'decimal', { precision: 10, scale: 2, default: 0 })
-    rating: number; // Calificación promedio del producto
+    rating: number;
+
     @Column( 'int',{ default: 0 })
-    reviewCount: number; // Contador de reseñas
+    reviewCount: number;
+
     @CreateDateColumn()
-    createdAt: Date; // Fecha de creación
+    createdAt: Date;
+
     @UpdateDateColumn()
-    updatedAt: Date; // Fecha de última actualización
+    updatedAt: Date;
 
     @ManyToOne(() => Category, (category) => category.products, { eager: true })
     category: Category;
-    // @Column()
-    // brandId: string; 
-    // TODO: CREAR DTO DE BRAND TABLA
 }
 

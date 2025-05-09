@@ -16,11 +16,11 @@ import { BannersModule } from './banners/banners.module';
     
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      database: 'ecommerce',
-      username: 'postgres',
-      password: '123456',
+      host: process.env.DB_HOST,
+      port: 5435,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
       autoLoadEntities: true,
       synchronize: true
     }),
