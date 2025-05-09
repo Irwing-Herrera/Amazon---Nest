@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import * as bcrypt from 'bcrypt';
@@ -63,6 +63,14 @@ export class AuthService {
       ...user,
       token: this.getJwtToken({ id: user.id })
     };
+  }
+
+  async findById(id: string): Promise<any> {
+    try {
+      return await this.userRepository.findOneBy({ id })
+    } catch (error) {
+      throw new NotFoundException(`User not exist in DB ${id}`)
+    }
   }
 
   private getJwtToken(payload: JwtPayload) {

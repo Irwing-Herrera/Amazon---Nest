@@ -1,9 +1,10 @@
 
 import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
+
 import { Brand } from './entities/brand.entity';
-import { CreateBannerDto } from '../banners/dto/create-banner.dto';
 import { CreateBrandDto } from './dto/create-brand.dto';
 
 @Injectable()
@@ -19,10 +20,19 @@ export class BrandService{
         return this.brandRepository.find();
     }
 
+    async findById(id: number):Promise<any> {
+      try {
+        return await this.brandRepository.findOneBy({ id })
+      } catch (error) {
+        throw new NotFoundException(`Brand ${id} not exist in DB`)
+      }
+    }
+
     async create(createBrandDto:CreateBrandDto){
         const brand = this.brandRepository.create(createBrandDto)
         return await this.brandRepository.save(brand)
     }
+    
     private handleDBExceptions(error: any) {
         if (error.code === '23505') {
           throw new BadRequestException(error.detail);

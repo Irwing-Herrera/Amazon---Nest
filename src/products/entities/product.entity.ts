@@ -14,10 +14,10 @@ export class Product {
     @Column('text')
     description: string;
 
-    @Column({ type: "decimal", precision: 10, scale: 2  })
+    @Column({ type: "decimal", precision: 10, scale: 2 })
     price: number;
 
-    @Column('int',{ default: 0 })
+    @Column('int', { default: 0 })
     quantity: number;
 
     @Column({ nullable: true })
@@ -28,17 +28,17 @@ export class Product {
 
     @Column({ nullable: true })
     sku?: string;
-     
+
     @Column({ type: 'date', nullable: true })
     expirationDate?: Date;
 
     @Column({ nullable: true, type: 'text' })
-    tags?: string; 
-    
-    @Column( 'decimal', { precision: 10, scale: 2, default: 0 })
+    tags?: string;
+
+    @Column('decimal', { precision: 10, scale: 2, default: 0 })
     rating: number;
 
-    @Column( 'int',{ default: 0 })
+    @Column('int', { default: 0 })
     reviewCount: number;
 
     @CreateDateColumn()
@@ -51,6 +51,6 @@ export class Product {
     category: Category;
 
     @ManyToOne(() => Brand, (brand) => brand.products, { eager: true })
-     brand: Brand;
+    brand: Brand;
 }
 

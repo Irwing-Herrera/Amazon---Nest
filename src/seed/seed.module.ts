@@ -8,6 +8,7 @@ import { CategoriesModule } from 'src/categories/categories.module';
 import { SeedService } from './seed.service';
 import { SeedController } from './seed.controller';
 import { BrandModule } from 'src/brand/brand.module';
+import { ShoppingCartModule } from 'src/shopping-cart/shopping-cart.module';
 
 @Module({
   controllers: [SeedController],
@@ -17,7 +18,8 @@ import { BrandModule } from 'src/brand/brand.module';
     ProductsModule,
     CategoriesModule,
     BannersModule,
-    BrandModule
+    BrandModule,
+    ShoppingCartModule
   ]
 })
 export class SeedModule {}

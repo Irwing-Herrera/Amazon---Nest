@@ -1,4 +1,5 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ShoppingCart } from "src/shopping-cart/entities/shopping-cart.entity";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class User {
@@ -22,6 +23,9 @@ export class User {
         default: ['user']
     })
     roles: string[];
+
+    @OneToMany(() => ShoppingCart, (cart) => cart.userId, { cascade: true })
+    cart: ShoppingCart[];
 
     @BeforeInsert()
     checkFieldsBeforeInsert() {

@@ -1,23 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { ProductsService } from './../products/products.service';
 import { initialData } from './data/seed-data';
-import { User } from '../auth/entities/user.entity';
-import { Category } from 'src/categories/entities/category.entity';
+import { ProductsService } from './../products/products.service';
 import { CategoriesService } from 'src/categories/categories.service';
-import { Product } from 'src/products/entities/product.entity';
 import { AuthService } from 'src/auth/auth.service';
 import { BannersService } from 'src/banners/banners.service';
+import { BrandService } from 'src/brand/brand.service';
+import { ShoppingCartService } from 'src/shopping-cart/shopping-cart.service';
+
+import { User } from '../auth/entities/user.entity';
+import { Category } from 'src/categories/entities/category.entity';
+import { Product } from 'src/products/entities/product.entity';
 import { Banner } from 'src/banners/entities/banner.entity';
 import { Brand } from 'src/brand/entities/brand.entity';
-import { BrandService } from 'src/brand/brand.service';
+import { ShoppingCart } from 'src/shopping-cart/entities/shopping-cart.entity';
 
 
 @Injectable()
 export class SeedService {
+
+  private readonly logger = new Logger('SeedService');
 
   constructor(
     private readonly productsService: ProductsService,
@@ -25,8 +30,11 @@ export class SeedService {
     private readonly bannersService: BannersService,
     private readonly authService: AuthService,
     private readonly brandService:BrandService,
+    private readonly shoppingCartService: ShoppingCartService,
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
+
+  private users: User[] = [];
 
   async runSeed() {
     await this.deleteTables();
@@ -35,8 +43,8 @@ export class SeedService {
     await this.insertBrand();
     await this.insertBanners();
     await this.insertProducts();
-    
-    return 'SEED EXECUTED';
+    await this.insertShoppingCart();
+    return 'BASE DE DATOS LLENADA CORRECTAMENTE';
   }
 
   private async deleteTables() {
@@ -45,6 +53,7 @@ export class SeedService {
     await this.bannersService.deleteAll();
     await this.categoriesService.deleteAllCategories();
     await this.brandService.deleteAll();
+    await this.shoppingCartService.deleteAll();
 
     const queryBuilderUsers = this.userRepository.createQueryBuilder();
 
@@ -61,7 +70,22 @@ export class SeedService {
       users.push(this.userRepository.create(user))
     });
 
-    await this.userRepository.save(seedUsers)
+    const response = await this.userRepository.save(seedUsers)
+    this.users = response
+    return response
+  }
+
+  private async insertShoppingCart() {
+    const shoppingCarts =  initialData.shoppingCarts;
+    const insertPromises: Promise<ShoppingCart>[] = [];
+    const user: User = this.users[1];
+
+    shoppingCarts.forEach((cart) => {
+      cart.userId = user.id;
+      insertPromises.push(this.shoppingCartService.create(cart));
+    });
+
+    return await Promise.all(insertPromises);
   }
 
   private async insertBanners() {
@@ -72,8 +96,7 @@ export class SeedService {
       insertPromises.push(this.bannersService.create(banner));
     });
 
-    await Promise.all(insertPromises);
-    return true;
+    return await Promise.all(insertPromises);
   }
 
   private async insertCategories() {
@@ -91,11 +114,12 @@ export class SeedService {
   private async insertBrand(){
     const brands = initialData.brand;
     const insertPromises: Promise<Brand>[] = [];
+
     brands.forEach((brand)=>{
       insertPromises.push(this.brandService.create(brand));
     });
-    await Promise.all(insertPromises);
-    return true;
+
+    return await Promise.all(insertPromises);
   }
 
   private async insertProducts() {
@@ -106,7 +130,6 @@ export class SeedService {
       insertPromises.push(this.productsService.create(product));
     });
 
-    await Promise.all(insertPromises);
-    return true;
+    return await Promise.all(insertPromises);    
   }
 }
