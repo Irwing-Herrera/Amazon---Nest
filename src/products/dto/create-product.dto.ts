@@ -64,9 +64,4 @@ export class CreateProductDto {
     @IsNotEmpty()
     categoryId: number;
 
-    // @IsInt()
-    // @IsPositive()
-    // @IsNotEmpty()
-    // brandId: number;
-
 }

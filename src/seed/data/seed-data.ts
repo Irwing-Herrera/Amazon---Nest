@@ -28,10 +28,17 @@ interface SeedCategory {
     name: string;
 }
 
+interface SeedBanner {
+    name: string;
+    imageUrl: string;
+    categoryId: number;
+}
+
 interface SeedData {
     users: SeedUser[];
     products: SeedProduct[];
     categories: SeedCategory[];
+    banners: SeedBanner[];
 }
 
 
@@ -585,6 +592,38 @@ export const initialData: SeedData = {
             reviewCount: 0,
             createdAt: new Date(),
             updatedAt: new Date()
+        }
+    ],
+    banners: [
+        {
+            name: 'Encuentra el regalo perfecto para Mamá',
+            imageUrl: 'https://m.media-amazon.com/images/G/33/dravizz/Mothers/Stores/StoresBanners2/Mothers25_Banner04_RP_1500x300.jpg',
+            categoryId: 4
+        },
+        {
+            name: 'Mesa de regalos para tu Bebe',
+            imageUrl: 'https://m.media-amazon.com/images/G/33/img24/PROGRAMS/BR_benefits_landing/BBREGISTRY_DSKBANNER_BENEFICIOS_1500X200.jpg',
+            categoryId: 4
+        },
+        {
+            name: 'Streaming',
+            imageUrl: 'https://m.media-amazon.com/images/I/61Y83YbjBRL._SX3000_.jpg',
+            categoryId: 5
+        },
+        {
+            name: 'Ofertas en Telefonia',
+            imageUrl: 'https://http2.mlstatic.com/D_NQ_699014-MLA84353305067_052025-OO.webp',
+            categoryId: 1
+        },
+        {
+            name: 'Ofertas en Llantas',
+            imageUrl: 'https://http2.mlstatic.com/D_NQ_643007-MLA83998433254_052025-OO.webp',
+            categoryId: 8
+        },
+        {
+            name: 'Ofertas en Moda',
+            imageUrl: 'https://http2.mlstatic.com/D_NQ_821587-MLA82645694985_022025-OO.webp',
+            categoryId: 9
         }
     ]
 }

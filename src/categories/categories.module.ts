@@ -13,6 +13,7 @@ import { AuthModule } from 'src/auth/auth.module';
   controllers: [CategoriesController],
   providers: [CategoriesService],
   exports: [
+    TypeOrmModule,
     CategoriesService
   ]
 })
