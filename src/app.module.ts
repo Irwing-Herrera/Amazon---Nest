@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { SeedModule } from './seed/seed.module';
 import { BannersModule } from './banners/banners.module';
+
+
+
 
 @Module({
   imports: [
@@ -13,11 +16,11 @@ import { BannersModule } from './banners/banners.module';
     
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: 5435,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      host: 'localhost',
+      port: 5432,
+      database: 'ecommerce',
+      username: 'postgres',
+      password: '123456',
       autoLoadEntities: true,
       synchronize: true
     }),
