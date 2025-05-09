@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ProductsService } from './products.service';
@@ -21,5 +21,12 @@ export class ProductsController {
   @Auth(ValidRoles.user)
   findAll() {
     return this.productsService.findAll();
+  }
+
+  @Get('newArrivals')
+  @Auth(ValidRoles.user)
+  async obtenerRecientes(@Query('limit') limit?: string) {
+    const limitProducts = limit ? parseInt(limit, 10) : 10;
+    return this.productsService.newArrivals(limitProducts);
   }
 }

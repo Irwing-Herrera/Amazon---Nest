@@ -65,6 +65,21 @@ export class ProductsService {
     }
   }
 
+  async newArrivals(limit: number = 10): Promise<any[]> {
+    const products = await this.productRepository.find({
+      order: { createdAt: 'DESC' },
+      take: limit,
+      relations: {
+        category: true
+      }
+    });
+
+    return products.map( ( product ) => ({
+      ...product,
+      category: product.category.name
+    }))
+  }
+
   private handleDBExceptions(error: any) {
     if (error.code === '23505') {
       throw new BadRequestException(error.detail);
