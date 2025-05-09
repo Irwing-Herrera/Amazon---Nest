@@ -25,8 +25,15 @@ export class ProductsController {
 
   @Get('newArrivals')
   @Auth(ValidRoles.user)
-  async obtenerRecientes(@Query('limit') limit?: string) {
+  async getRecent(@Query('limit') limit?: string) {
     const limitProducts = limit ? parseInt(limit, 10) : 10;
     return this.productsService.newArrivals(limitProducts);
+  }
+
+  @Get('bestRated')
+  @Auth(ValidRoles.user)
+  async getBestRated(@Query('limit') limit?: string) {
+    const limitProducts = limit ? parseInt(limit, 10) : 10;
+    return this.productsService.bestRated(limitProducts);
   }
 }

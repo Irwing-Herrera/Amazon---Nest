@@ -37,8 +37,8 @@ export class SeedService {
   private async deleteTables() {
     await this.authService.deleteAllUsers();
     await this.productsService.deleteAllProducts();
-    await this.categoriesService.deleteAllCategories();
     await this.bannersService.deleteAll();
+    await this.categoriesService.deleteAllCategories();
 
     const queryBuilderUsers = this.userRepository.createQueryBuilder();
 

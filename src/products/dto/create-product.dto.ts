@@ -14,7 +14,6 @@ export class CreateProductDto {
 
     @IsNumber()
     @IsPositive()
-    @IsNotEmpty()
     price: number;
 
     @IsInt()

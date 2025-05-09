@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcrypt';
+import { NumericType } from 'typeorm';
 
 interface SeedProduct {
     name: string;
@@ -40,6 +41,18 @@ interface SeedData {
     banners: SeedBanner[];
 }
 
+function randomDate(): Date {
+    const baseDate = new Date();
+    const daysRandom =  Math.floor(Math.random() * 31);
+    const randomDaysInMilliseconds = daysRandom * 24 * 60 * 60 * 1000;
+    return new Date(baseDate.getTime() - randomDaysInMilliseconds);
+}
+
+function randomRaiting(): number {
+    var rand = Math.random()*(5-0) + 0;
+    var power = Math.pow(10, 2);
+    return Math.floor(rand*power) / power;
+}
 
 export const initialData: SeedData = {
 
@@ -100,9 +113,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 2,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -116,9 +129,9 @@ export const initialData: SeedData = {
 
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 3,
+            rating: randomRaiting(),
             reviewCount: 5,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -131,9 +144,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 3,
+            rating: randomRaiting(),
             reviewCount: 3,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -146,9 +159,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 2,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -161,9 +174,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 3,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -176,9 +189,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 1,
+            rating: randomRaiting(),
             reviewCount: 3,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -191,9 +204,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 2,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -206,9 +219,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 5,
+            rating: randomRaiting(),
             reviewCount: 1,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -221,9 +234,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 3,
+            rating: randomRaiting(),
             reviewCount: 4,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -236,9 +249,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 3,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -251,9 +264,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 1,
+            rating: randomRaiting(),
             reviewCount: 1,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -266,9 +279,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -281,9 +294,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 5,
+            rating: randomRaiting(),
             reviewCount: 4,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -296,9 +309,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 3,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -311,9 +324,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -326,9 +339,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -341,9 +354,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -356,9 +369,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -371,9 +384,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -386,9 +399,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: 'Funda',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -401,9 +414,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -416,9 +429,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -431,9 +444,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -446,9 +459,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -461,9 +474,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -476,9 +489,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -491,9 +504,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -506,9 +519,9 @@ export const initialData: SeedData = {
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -521,9 +534,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 0,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         },
         {
@@ -536,9 +549,9 @@ export const initialData: SeedData = {
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: 2,
+            rating: randomRaiting(),
             reviewCount: 0,
-            createdAt: new Date(),
+            createdAt: randomDate(),
             updatedAt: new Date()
         }
     ],

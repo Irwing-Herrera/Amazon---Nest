@@ -34,7 +34,7 @@ export class ProductsService {
           category: category.name
         }
       } else {
-        this.logger.error('aaaaa')
+        this.logger.error('method: create')
         throw new InternalServerErrorException(`Category with id: ${createProductDto.categoryId} not found`);
       }
   }
@@ -68,6 +68,21 @@ export class ProductsService {
   async newArrivals(limit: number = 10): Promise<any[]> {
     const products = await this.productRepository.find({
       order: { createdAt: 'DESC' },
+      take: limit,
+      relations: {
+        category: true
+      }
+    });
+
+    return products.map( ( product ) => ({
+      ...product,
+      category: product.category.name
+    }))
+  }
+  
+  async bestRated(limit: number = 10): Promise<any[]> {
+    const products = await this.productRepository.find({
+      order: { rating: 'DESC' },
       take: limit,
       relations: {
         category: true

@@ -13,7 +13,7 @@ export class Product {
     @Column('text')
     description: string;
 
-    @Column({  type: "float", default: 0.0  })
+    @Column({ type: "decimal", precision: 10, scale: 2  })
     price: number;
 
     @Column('int',{ default: 0 })
