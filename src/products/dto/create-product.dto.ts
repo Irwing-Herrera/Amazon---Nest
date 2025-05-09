@@ -56,4 +56,9 @@ export class CreateProductDto {
     @IsPositive()
     @IsNotEmpty()
     categoryId: number;
+
+    @IsInt()
+    @IsPositive()
+    @IsNotEmpty()
+    brandId: number;
 }

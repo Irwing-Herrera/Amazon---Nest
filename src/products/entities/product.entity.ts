@@ -1,4 +1,5 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { Brand } from 'src/brand/entities/brand.entity';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
@@ -48,5 +49,8 @@ export class Product {
 
     @ManyToOne(() => Category, (category) => category.products, { eager: true })
     category: Category;
+
+    @ManyToOne(() => Brand, (brand) => brand.products, { eager: true })
+     brand: Brand;
 }
 

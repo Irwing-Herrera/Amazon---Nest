@@ -12,6 +12,8 @@ import { Product } from 'src/products/entities/product.entity';
 import { AuthService } from 'src/auth/auth.service';
 import { BannersService } from 'src/banners/banners.service';
 import { Banner } from 'src/banners/entities/banner.entity';
+import { Brand } from 'src/brand/entities/brand.entity';
+import { BrandService } from 'src/brand/brand.service';
 
 
 @Injectable()
@@ -22,6 +24,7 @@ export class SeedService {
     private readonly categoriesService: CategoriesService,
     private readonly bannersService: BannersService,
     private readonly authService: AuthService,
+    private readonly brandService:BrandService,
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
 
@@ -29,8 +32,10 @@ export class SeedService {
     await this.deleteTables();
     await this.insertUsers();
     await this.insertCategories();
+    await this.insertBrand();
     await this.insertBanners();
     await this.insertProducts();
+    
     return 'SEED EXECUTED';
   }
 
@@ -39,6 +44,7 @@ export class SeedService {
     await this.productsService.deleteAllProducts();
     await this.bannersService.deleteAll();
     await this.categoriesService.deleteAllCategories();
+    await this.brandService.deleteAll();
 
     const queryBuilderUsers = this.userRepository.createQueryBuilder();
 
@@ -78,6 +84,16 @@ export class SeedService {
       insertPromises.push(this.categoriesService.create(category));
     });
 
+    await Promise.all(insertPromises);
+    return true;
+  }
+
+  private async insertBrand(){
+    const brands = initialData.brand;
+    const insertPromises: Promise<Brand>[] = [];
+    brands.forEach((brand)=>{
+      insertPromises.push(this.brandService.create(brand));
+    });
     await Promise.all(insertPromises);
     return true;
   }
