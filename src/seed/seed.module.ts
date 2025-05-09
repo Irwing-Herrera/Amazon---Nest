@@ -7,6 +7,7 @@ import { CategoriesModule } from 'src/categories/categories.module';
 
 import { SeedService } from './seed.service';
 import { SeedController } from './seed.controller';
+import { BrandModule } from 'src/brand/brand.module';
 
 @Module({
   controllers: [SeedController],
@@ -15,7 +16,8 @@ import { SeedController } from './seed.controller';
     AuthModule,
     ProductsModule,
     CategoriesModule,
-    BannersModule
+    BannersModule,
+    BrandModule
   ]
 })
 export class SeedModule {}

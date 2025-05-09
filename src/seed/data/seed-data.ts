@@ -15,6 +15,7 @@ interface SeedProduct {
     createdAt: Date;
     updatedAt: Date;
     categoryId: number;
+    brandId:number;
 }
 
 interface SeedUser {
@@ -25,6 +26,10 @@ interface SeedUser {
 }
 
 interface SeedCategory {
+    name: string;
+}
+
+interface SeedBrand{
     name: string;
 }
 
@@ -39,6 +44,7 @@ interface SeedData {
     products: SeedProduct[];
     categories: SeedCategory[];
     banners: SeedBanner[];
+    brand: SeedBrand[];
 }
 
 function randomDate(): Date {
@@ -102,6 +108,38 @@ export const initialData: SeedData = {
             name: "Moda"
         }
     ],
+    brand: [
+        {
+            name: "Apple"
+        },
+        {
+            name: "Zara Home"
+        },
+        {
+            name: "PlayStation (Sony)"
+        },
+        {
+            name: "HarperCollins"
+        },
+        {
+            name: "Disney"
+        },
+        {
+            name: "Stanley"
+        },
+        {
+            name: "Mercedes-Benz"
+        },
+        {
+            name: "Mattel"
+        },
+        {
+            name: "Petco"
+        },
+        {
+            name: "Gucci"
+        }
+    ],
     products: [
         {
             name: "Apple MacBook Pro con chip Apple M1",
@@ -109,6 +147,7 @@ export const initialData: SeedData = {
             price: 13499.00,
             quantity: 10,
             categoryId: 1,
+            brandId:1,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -124,9 +163,9 @@ export const initialData: SeedData = {
             price: 13243.00,
             quantity: 10,
             categoryId: 1,
+            brandId:1,
             imageUrl: '',
             isActive: false,
-
             expirationDate: new Date('2025-12-31'),
             tags: '',
             rating: randomRaiting(),
@@ -140,6 +179,7 @@ export const initialData: SeedData = {
             price: 1999.00,
             quantity: 10,
             categoryId: 1,
+            brandId:1,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -155,6 +195,7 @@ export const initialData: SeedData = {
             price: 1677.00,
             quantity: 10,
             categoryId: 2,
+            brandId:2,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -170,6 +211,7 @@ export const initialData: SeedData = {
             price: 235.00,
             quantity: 10,
             categoryId: 2,
+            brandId:2,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -185,6 +227,7 @@ export const initialData: SeedData = {
             price: 4279.00,
             quantity: 10,
             categoryId: 2,
+            brandId:1,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -200,6 +243,7 @@ export const initialData: SeedData = {
             price: 11699.00,
             quantity: 10,
             categoryId: 3,
+            brandId:3,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -215,6 +259,7 @@ export const initialData: SeedData = {
             price: 11599.00,
             quantity: 10,
             categoryId: 3,
+            brandId:3,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -230,6 +275,7 @@ export const initialData: SeedData = {
             price: 9719.00,
             quantity: 10,
             categoryId: 3,
+            brandId:3,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -245,6 +291,7 @@ export const initialData: SeedData = {
             price: 69.00,
             quantity: 10,
             categoryId: 4,
+            brandId:14,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -260,6 +307,7 @@ export const initialData: SeedData = {
             price: 489.00,
             quantity: 10,
             categoryId: 4,
+            brandId:4,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -275,6 +323,7 @@ export const initialData: SeedData = {
             price: 514.00,
             quantity: 10,
             categoryId: 4,
+            brandId:4,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -290,6 +339,7 @@ export const initialData: SeedData = {
             price: 295.04,
             quantity: 10,
             categoryId: 5,
+            brandId:5,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -305,6 +355,7 @@ export const initialData: SeedData = {
             price: 748.65,
             quantity: 10,
             categoryId: 5,
+            brandId:5,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -320,6 +371,7 @@ export const initialData: SeedData = {
             price: 957.29,
             quantity: 10,
             categoryId: 5,
+            brandId:5,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -335,6 +387,7 @@ export const initialData: SeedData = {
             price: 938.49,
             quantity: 10,
             categoryId: 6,
+            brandId:6,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -350,6 +403,7 @@ export const initialData: SeedData = {
             price: 2395.59,
             quantity: 10,
             categoryId: 6,
+            brandId:16,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -365,6 +419,7 @@ export const initialData: SeedData = {
             price: 1095.00,
             quantity: 10,
             categoryId: 6,
+            brandId:6,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -380,6 +435,7 @@ export const initialData: SeedData = {
             price: 599.00,
             quantity: 10,
             categoryId: 7,
+            brandId:7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -395,6 +451,7 @@ export const initialData: SeedData = {
             price: 350.00,
             quantity: 10,
             categoryId: 7,
+            brandId:7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -410,6 +467,7 @@ export const initialData: SeedData = {
             price: 7255.00,
             quantity: 10,
             categoryId: 7,
+            brandId:7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -425,6 +483,7 @@ export const initialData: SeedData = {
             price: 1601.00,
             quantity: 10,
             categoryId: 8,
+            brandId:8,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -440,6 +499,7 @@ export const initialData: SeedData = {
             price: 294.00,
             quantity: 10,
             categoryId: 8,
+            brandId:8,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -455,6 +515,7 @@ export const initialData: SeedData = {
             price: 758.00,
             quantity: 10,
             categoryId: 8,
+            brandId:8,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -470,6 +531,7 @@ export const initialData: SeedData = {
             price: 490.00,
             quantity: 10,
             categoryId: 9,
+            brandId:9,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -485,6 +547,7 @@ export const initialData: SeedData = {
             price: 51.00,
             quantity: 10,
             categoryId: 9,
+            brandId:9,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -500,6 +563,7 @@ export const initialData: SeedData = {
             price: 660.00,
             quantity: 10,
             categoryId: 9,
+            brandId:9,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -515,6 +579,7 @@ export const initialData: SeedData = {
             price: 1199.00,
             quantity: 10,
             categoryId: 10,
+            brandId:10,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
@@ -530,6 +595,7 @@ export const initialData: SeedData = {
             price: 351.00,
             quantity: 10,
             categoryId: 10,
+            brandId:10,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
@@ -545,6 +611,7 @@ export const initialData: SeedData = {
             price: 269.00,
             quantity: 10,
             categoryId: 10,
+            brandId:10,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),

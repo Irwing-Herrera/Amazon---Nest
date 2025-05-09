@@ -6,12 +6,14 @@ import { ProductsController } from './products.controller';
 import { Product } from './entities/product.entity';
 import { CategoriesModule } from 'src/categories/categories.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { BrandModule } from 'src/brand/brand.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([ Product ]),
     CategoriesModule,
-    AuthModule
+    AuthModule,
+    BrandModule
   ],
   controllers: [ProductsController],
   providers: [ProductsService],
