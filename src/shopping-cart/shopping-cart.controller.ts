@@ -11,8 +11,8 @@ export class ShoppingCartController {
     return this.shoppingCartService.create(createShoppingCartDto);
   }
 
-  @Get()
-  findAll() {
-    return this.shoppingCartService.findAll();
+  @Get(':userId')
+  findByUserId(@Param('userId') userId: string) {
+    return this.shoppingCartService.findByUserId(userId);
   }
 }

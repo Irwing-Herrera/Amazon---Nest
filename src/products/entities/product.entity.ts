@@ -1,6 +1,7 @@
 import { Category } from 'src/categories/entities/category.entity';
 import { Brand } from 'src/brand/entities/brand.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { ShoppingCart } from 'src/shopping-cart/entities/shopping-cart.entity';
 
 @Entity()
 export class Product {
@@ -52,5 +53,8 @@ export class Product {
 
     @ManyToOne(() => Brand, (brand) => brand.products, { eager: true })
     brand: Brand;
+
+    @OneToMany(() => ShoppingCart, (shoppingCart) => shoppingCart.product, { eager: true })
+    shoppingCartProducts: ShoppingCart[];
 }
 

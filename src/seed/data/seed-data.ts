@@ -1,5 +1,4 @@
 import * as bcrypt from 'bcrypt';
-import { NumericType } from 'typeorm';
 
 interface SeedProduct {
     name: string;
@@ -39,21 +38,12 @@ interface SeedBanner {
     categoryId: number;
 }
 
-interface SeedShoppingCart {
-    totalPrice: number;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string;
-    productsId: number[];
-}
-
 interface SeedData {
     users: SeedUser[];
     products: SeedProduct[];
     categories: SeedCategory[];
     banners: SeedBanner[];
     brand: SeedBrand[];
-    shoppingCarts: SeedShoppingCart[];
 }
 
 function randomDate(): Date {
@@ -661,15 +651,6 @@ export const initialData: SeedData = {
             name: 'Ofertas en Moda',
             imageUrl: 'https://http2.mlstatic.com/D_NQ_821587-MLA82645694985_022025-OO.webp',
             categoryId: 9
-        }
-    ],
-    shoppingCarts: [
-        {
-            totalPrice: 100.00,
-            createdAt: randomDate(),
-            updatedAt: new Date(),
-            userId: 'f4caa6be-8c9c-4943-bd27-955d5b6ba74b',
-            productsId: [1,2]
         }
     ]
 }

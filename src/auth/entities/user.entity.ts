@@ -24,8 +24,8 @@ export class User {
     })
     roles: string[];
 
-    @OneToMany(() => ShoppingCart, (cart) => cart.userId, { cascade: true })
-    cart: ShoppingCart[];
+    @OneToMany(() => ShoppingCart, (shoppingCart) => shoppingCart.user, { cascade: true })
+    shoppingCarts: ShoppingCart[];
 
     @BeforeInsert()
     checkFieldsBeforeInsert() {

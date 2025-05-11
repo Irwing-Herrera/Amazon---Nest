@@ -16,7 +16,6 @@ import { Category } from 'src/categories/entities/category.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { Banner } from 'src/banners/entities/banner.entity';
 import { Brand } from 'src/brand/entities/brand.entity';
-import { ShoppingCart } from 'src/shopping-cart/entities/shopping-cart.entity';
 
 
 @Injectable()
@@ -31,10 +30,12 @@ export class SeedService {
     private readonly authService: AuthService,
     private readonly brandService:BrandService,
     private readonly shoppingCartService: ShoppingCartService,
-    @InjectRepository(User) private readonly userRepository: Repository<User>
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(Product) private readonly productRepository: Repository<Product>
   ) {}
 
-  private users: User[] = [];
+  private user: User = new User();
+  private productName: string = "";
 
   async runSeed() {
     await this.deleteTables();
@@ -71,21 +72,22 @@ export class SeedService {
     });
 
     const response = await this.userRepository.save(seedUsers)
-    this.users = response
+    this.user = users[0];
     return response
   }
 
   private async insertShoppingCart() {
-    const shoppingCarts =  initialData.shoppingCarts;
-    const insertPromises: Promise<ShoppingCart>[] = [];
-    const user: User = this.users[1];
+    const user = await this.userRepository.findOneBy({ id: this.user.id });
+    const product = await this.productRepository.findOneBy({ name: this.productName });
+    const quantity: number = 2;
 
-    shoppingCarts.forEach((cart) => {
-      cart.userId = user.id;
-      insertPromises.push(this.shoppingCartService.create(cart));
-    });
-
-    return await Promise.all(insertPromises);
+    return await this.shoppingCartService.create({
+      userId: user!.id,
+      product: {
+        productId: product!.id,
+        quantity
+      }
+    })
   }
 
   private async insertBanners() {
@@ -129,6 +131,8 @@ export class SeedService {
     products.forEach((product) => {
       insertPromises.push(this.productsService.create(product));
     });
+
+    this.productName = initialData.products[0].name
 
     return await Promise.all(insertPromises);    
   }

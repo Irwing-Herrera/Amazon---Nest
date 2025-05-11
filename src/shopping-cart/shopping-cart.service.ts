@@ -7,6 +7,9 @@ import { CreateShoppingCartDto } from './dto/create-shopping-cart.dto';
 import { ShoppingCart } from './entities/shopping-cart.entity';
 import { AuthService } from 'src/auth/auth.service';
 import { User } from 'src/auth/entities/user.entity';
+import { Product } from 'src/products/entities/product.entity';
+import { ProductsService } from 'src/products/products.service';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class ShoppingCartService {
@@ -16,29 +19,49 @@ export class ShoppingCartService {
   constructor(
     @InjectRepository(ShoppingCart)
     private readonly shoppingCartRepository: Repository<ShoppingCart>,
-    private readonly userService: AuthService
+    private readonly userService: AuthService,
+    private readonly productsService: ProductsService
   ) { }
 
   async create(createShoppingCartDto: CreateShoppingCartDto): Promise<any> {
     try {
       const user: User = await this.userService.findById(createShoppingCartDto.userId);
+      const product: Product = await this.productsService.findById(createShoppingCartDto.product.productId);
+      
+      const shoppingCart: ShoppingCart = this.shoppingCartRepository.create({
+        ...createShoppingCartDto,
+        user,
+        product,
+        totalPrice: (createShoppingCartDto.product.quantity * product.price),
+        quantity: createShoppingCartDto.product.quantity
+      });
 
-      if (user != null) {
-        const shoppingCart: ShoppingCart = this.shoppingCartRepository.create({
-          ...createShoppingCartDto,
-          userId: user.id
-        });
-        return await this.shoppingCartRepository.save(shoppingCart);
-      } else {
-        throw new InternalServerErrorException(`User not found`);
-      }
+      return await this.shoppingCartRepository.save(shoppingCart);
     } catch (error) {
       this.handleDBExceptions(error);
     }
   }
 
-  findAll() {
-    return `This action returns all shoppingCart`;
+  async findByUserId(userId: string) {
+    try {
+      this.logger.debug(`User id ${userId}`)
+      if (isUUID(userId)) {
+        this.logger.debug(`User id ${userId}`)
+        const user: User = await this.userService.findById(userId);
+        this.logger.debug(`User name ${user.fullName}`)
+        return this.shoppingCartRepository.find({
+          where: { user },
+          relations: {
+            user: true,
+            product: true
+          }
+        });  
+      } else {
+        throw new InternalServerErrorException(`UserId isn't UUID`);
+      }
+    } catch (error) {
+      this.handleDBExceptions(error);
+    } 
   }
 
   async deleteAll() {

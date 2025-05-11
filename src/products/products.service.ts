@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
@@ -61,6 +61,19 @@ export class ProductsService {
       ...product,
       category: product.category.name
     }))
+  }
+
+  async findById(id: string): Promise<any> {
+    try {
+      const product = await this.productRepository.findOneBy({ id })
+      if (product != null) {
+        return product
+      } else {
+        throw new NotFoundException(`Product ${id} not exist in DB`)  
+      }
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
   }
 
   async deleteAllProducts() {
