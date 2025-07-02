@@ -44,18 +44,14 @@ export class ShoppingCartService {
 
   async findByUserId(userId: string) {
     try {
-      this.logger.debug(`User id ${userId}`)
       if (isUUID(userId)) {
-        this.logger.debug(`User id ${userId}`)
         const user: User = await this.userService.findById(userId);
-        this.logger.debug(`User name ${user.fullName}`)
-        return this.shoppingCartRepository.find({
-          where: { user },
-          relations: {
-            user: true,
-            product: true
-          }
-        });  
+
+        return this.shoppingCartRepository
+          .createQueryBuilder('shopping_cart')
+          .innerJoinAndSelect('shopping_cart.product', 'product')
+          .where('shopping_cart.user.id = :userId', { userId })
+          .getMany();
       } else {
         throw new InternalServerErrorException(`UserId isn't UUID`);
       }
