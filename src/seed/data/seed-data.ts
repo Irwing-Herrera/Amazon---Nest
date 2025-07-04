@@ -9,12 +9,13 @@ interface SeedProduct {
     isActive: boolean;
     expirationDate: Date;
     tags: string;
+    discount: number;
     rating: number;
     reviewCount: number;
     createdAt: Date;
     updatedAt: Date;
     categoryId: number;
-    brandId:number;
+    brandId: number;
 }
 
 interface SeedUser {
@@ -28,7 +29,7 @@ interface SeedCategory {
     name: string;
 }
 
-interface SeedBrand{
+interface SeedBrand {
     name: string;
 }
 
@@ -48,15 +49,15 @@ interface SeedData {
 
 function randomDate(): Date {
     const baseDate = new Date();
-    const daysRandom =  Math.floor(Math.random() * 31);
+    const daysRandom = Math.floor(Math.random() * 31);
     const randomDaysInMilliseconds = daysRandom * 24 * 60 * 60 * 1000;
     return new Date(baseDate.getTime() - randomDaysInMilliseconds);
 }
 
 function randomRaiting(): number {
-    var rand = Math.random()*(5-0) + 0;
+    var rand = Math.random() * (5 - 0) + 0;
     var power = Math.pow(10, 2);
-    return Math.floor(rand*power) / power;
+    return Math.floor(rand * power) / power;
 }
 
 export const initialData: SeedData = {
@@ -146,11 +147,12 @@ export const initialData: SeedData = {
             price: 13499.00,
             quantity: 10,
             categoryId: 1,
-            brandId:1,
+            brandId: 1,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
+            discount: 10, 
             rating: randomRaiting(),
             reviewCount: 2,
             createdAt: randomDate(),
@@ -162,12 +164,12 @@ export const initialData: SeedData = {
             price: 13243.00,
             quantity: 10,
             categoryId: 1,
-            brandId:1,
+            brandId: 1,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 5, rating: randomRaiting(),
             reviewCount: 5,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -178,12 +180,12 @@ export const initialData: SeedData = {
             price: 1999.00,
             quantity: 10,
             categoryId: 1,
-            brandId:1,
+            brandId: 1,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 3,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -194,12 +196,12 @@ export const initialData: SeedData = {
             price: 1677.00,
             quantity: 10,
             categoryId: 2,
-            brandId:2,
+            brandId: 2,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 2,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -210,12 +212,12 @@ export const initialData: SeedData = {
             price: 235.00,
             quantity: 10,
             categoryId: 2,
-            brandId:2,
+            brandId: 2,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 3,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -226,12 +228,12 @@ export const initialData: SeedData = {
             price: 4279.00,
             quantity: 10,
             categoryId: 2,
-            brandId:1,
+            brandId: 1,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 3,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -242,12 +244,12 @@ export const initialData: SeedData = {
             price: 11699.00,
             quantity: 10,
             categoryId: 3,
-            brandId:3,
+            brandId: 3,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 2,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -258,12 +260,12 @@ export const initialData: SeedData = {
             price: 11599.00,
             quantity: 10,
             categoryId: 3,
-            brandId:3,
+            brandId: 3,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 1,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -274,12 +276,12 @@ export const initialData: SeedData = {
             price: 9719.00,
             quantity: 10,
             categoryId: 3,
-            brandId:3,
+            brandId: 3,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 4,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -290,12 +292,12 @@ export const initialData: SeedData = {
             price: 69.00,
             quantity: 10,
             categoryId: 4,
-            brandId:14,
+            brandId: 14,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 3,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -306,12 +308,12 @@ export const initialData: SeedData = {
             price: 489.00,
             quantity: 10,
             categoryId: 4,
-            brandId:4,
+            brandId: 4,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 1,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -322,12 +324,12 @@ export const initialData: SeedData = {
             price: 514.00,
             quantity: 10,
             categoryId: 4,
-            brandId:4,
+            brandId: 4,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -338,12 +340,12 @@ export const initialData: SeedData = {
             price: 295.04,
             quantity: 10,
             categoryId: 5,
-            brandId:5,
+            brandId: 5,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 4,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -354,12 +356,12 @@ export const initialData: SeedData = {
             price: 748.65,
             quantity: 10,
             categoryId: 5,
-            brandId:5,
+            brandId: 5,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 3,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -370,12 +372,12 @@ export const initialData: SeedData = {
             price: 957.29,
             quantity: 10,
             categoryId: 5,
-            brandId:5,
+            brandId: 5,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -386,12 +388,12 @@ export const initialData: SeedData = {
             price: 938.49,
             quantity: 10,
             categoryId: 6,
-            brandId:6,
+            brandId: 6,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -402,12 +404,12 @@ export const initialData: SeedData = {
             price: 2395.59,
             quantity: 10,
             categoryId: 6,
-            brandId:16,
+            brandId: 16,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -418,12 +420,12 @@ export const initialData: SeedData = {
             price: 1095.00,
             quantity: 10,
             categoryId: 6,
-            brandId:6,
+            brandId: 6,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -434,12 +436,12 @@ export const initialData: SeedData = {
             price: 599.00,
             quantity: 10,
             categoryId: 7,
-            brandId:7,
+            brandId: 7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -450,12 +452,12 @@ export const initialData: SeedData = {
             price: 350.00,
             quantity: 10,
             categoryId: 7,
-            brandId:7,
+            brandId: 7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: 'Funda',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -466,12 +468,12 @@ export const initialData: SeedData = {
             price: 7255.00,
             quantity: 10,
             categoryId: 7,
-            brandId:7,
+            brandId: 7,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -482,12 +484,12 @@ export const initialData: SeedData = {
             price: 1601.00,
             quantity: 10,
             categoryId: 8,
-            brandId:8,
+            brandId: 8,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -498,12 +500,12 @@ export const initialData: SeedData = {
             price: 294.00,
             quantity: 10,
             categoryId: 8,
-            brandId:8,
+            brandId: 8,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -514,12 +516,12 @@ export const initialData: SeedData = {
             price: 758.00,
             quantity: 10,
             categoryId: 8,
-            brandId:8,
+            brandId: 8,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -530,12 +532,12 @@ export const initialData: SeedData = {
             price: 490.00,
             quantity: 10,
             categoryId: 9,
-            brandId:9,
+            brandId: 9,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -546,12 +548,12 @@ export const initialData: SeedData = {
             price: 51.00,
             quantity: 10,
             categoryId: 9,
-            brandId:9,
+            brandId: 9,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -562,12 +564,12 @@ export const initialData: SeedData = {
             price: 660.00,
             quantity: 10,
             categoryId: 9,
-            brandId:9,
+            brandId: 9,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -578,12 +580,12 @@ export const initialData: SeedData = {
             price: 1199.00,
             quantity: 10,
             categoryId: 10,
-            brandId:10,
+            brandId: 10,
             imageUrl: '',
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -594,12 +596,12 @@ export const initialData: SeedData = {
             price: 351.00,
             quantity: 10,
             categoryId: 10,
-            brandId:10,
+            brandId: 10,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()
@@ -610,12 +612,12 @@ export const initialData: SeedData = {
             price: 269.00,
             quantity: 10,
             categoryId: 10,
-            brandId:10,
+            brandId: 10,
             imageUrl: '',
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
-            rating: randomRaiting(),
+            discount: 0, rating: randomRaiting(),
             reviewCount: 0,
             createdAt: randomDate(),
             updatedAt: new Date()

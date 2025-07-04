@@ -40,6 +40,9 @@ export class Product {
     rating: number;
 
     @Column('int', { default: 0 })
+    discount: number;
+
+    @Column('int', { default: 0 })
     reviewCount: number;
 
     @CreateDateColumn()
