@@ -73,6 +73,18 @@ export class AuthService {
     }
   }
 
+  async findUserAndShoppingCart(id: string): Promise<any> {
+    try {
+      return this.userRepository
+          .createQueryBuilder('users')
+          .innerJoinAndSelect('users.shoppingCarts', 'shopping_cart')
+          .where('users.id = :id', { id })
+          .getMany();
+    } catch (error) {
+      throw new NotFoundException(`User not exist in DB ${id}`)
+    }
+  }
+
   private getJwtToken(payload: JwtPayload) {
     return this.jwtService.sign( payload );
   }
