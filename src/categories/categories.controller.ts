@@ -4,7 +4,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { ValidRoles } from 'src/auth/interfaces';
-import { Auth } from 'src/auth/decorators';
+import { Auth, GetUser } from 'src/auth/decorators';
+import { User } from 'src/auth/entities/user.entity';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -13,8 +14,8 @@ export class CategoriesController {
 
   @Post()
   @Auth(ValidRoles.admin, ValidRoles.superUser)
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+  create(@GetUser() user: User, @Body() createCategoryDto: CreateCategoryDto) {
+    return this.categoriesService.create(user.id, createCategoryDto);
   }
 
   @Get()

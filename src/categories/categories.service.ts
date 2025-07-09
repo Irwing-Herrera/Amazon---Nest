@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 import { Category } from './entities/category.entity';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class CategoriesService {
@@ -14,6 +15,7 @@ export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
+    private readonly userService: AuthService
   ) { }
 
   findAll(): Promise<Category[]> {
@@ -28,7 +30,8 @@ export class CategoriesService {
     }
   }
 
-  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+  async create(userId: string, createCategoryDto: CreateCategoryDto): Promise<Category> {
+    const _ = await this.userService.findById(userId);
     const category = this.categoryRepository.create(createCategoryDto)
     return await this.categoryRepository.save(category)
   }

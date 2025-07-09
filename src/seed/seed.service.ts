@@ -81,8 +81,7 @@ export class SeedService {
     const product = await this.productRepository.findOneBy({ name: this.productName });
     const quantity: number = 2;
 
-    return await this.shoppingCartService.create({
-      userId: user!.id,
+    return await this.shoppingCartService.create(user!.id, {
       product: {
         productId: product!.id,
         quantity
@@ -91,22 +90,24 @@ export class SeedService {
   }
 
   private async insertBanners() {
+    const user = await this.userRepository.findOneBy({ id: this.user.id });
     const banners = initialData.banners;
     const insertPromises: Promise<Banner>[] = [];
 
     banners.forEach((banner) => {
-      insertPromises.push(this.bannersService.create(banner));
+      insertPromises.push(this.bannersService.create(user!.id, banner));
     });
 
     return await Promise.all(insertPromises);
   }
 
   private async insertCategories() {
+    const user = await this.userRepository.findOneBy({ id: this.user.id });
     const categories = initialData.categories;
     const insertPromises: Promise<Category>[] = [];
 
     categories.forEach((category) => {
-      insertPromises.push(this.categoriesService.create(category));
+      insertPromises.push(this.categoriesService.create(user!.id, category));
     });
 
     await Promise.all(insertPromises);

@@ -4,6 +4,8 @@ import { Banner } from './entities/banner.entity';
 import { CategoriesService } from 'src/categories/categories.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from 'src/auth/entities/user.entity';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class BannersService {
@@ -13,10 +15,12 @@ export class BannersService {
   constructor(
     @InjectRepository(Banner)
     private readonly bannerRepository: Repository<Banner>,
+    private readonly userService: AuthService,
     private readonly categoriesService: CategoriesService
   ) { }
 
-  async create(createBannerDto: CreateBannerDto): Promise<Banner> {
+  async create(userId: string, createBannerDto: CreateBannerDto): Promise<Banner> {
+    const _ = await this.userService.findById(userId);
     const category = await this.categoriesService.findById(createBannerDto.categoryId);
 
     if (category != null) {

@@ -23,9 +23,9 @@ export class ShoppingCartService {
     private readonly productsService: ProductsService
   ) { }
 
-  async create(createShoppingCartDto: CreateShoppingCartDto): Promise<any> {
+  async create(userId: string, createShoppingCartDto: CreateShoppingCartDto): Promise<any> {
     try {
-      const user: User = await this.userService.findById(createShoppingCartDto.userId);
+      const user: User = await this.userService.findById(userId);
       const product: Product = await this.productsService.findById(createShoppingCartDto.product.productId);
       
       const shoppingCart: ShoppingCart = this.shoppingCartRepository.create({
