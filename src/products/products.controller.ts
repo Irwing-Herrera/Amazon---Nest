@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ProductsService } from './products.service';
@@ -35,5 +35,18 @@ export class ProductsController {
   async getBestRated(@Query('limit') limit?: string) {
     const limitProducts = limit ? parseInt(limit, 10) : 10;
     return this.productsService.bestRated(limitProducts);
+  }
+
+  @Get('byCategory')
+  @Auth(ValidRoles.user)
+  async byCategory(@Query('categoryId') categoryId: string, @Query('limit') limit?: string) {
+    const limitProducts = limit ? parseInt(limit, 10) : 10;
+    return this.productsService.byCategory(categoryId, limitProducts);
+  }
+
+  @Get(':id')
+  @Auth(ValidRoles.user)
+  async findOne(@Param('id') id: string) {
+    return this.productsService.findById(id);
   }
 }

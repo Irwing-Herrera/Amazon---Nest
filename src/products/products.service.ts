@@ -26,7 +26,7 @@ export class ProductsService {
     try {
       const category: Category = await this.categoriesService.findById(createProductDto.categoryId);
       const brand: Brand = await this.brandService.findById(createProductDto.brandId);
-      
+
       if (category != null) {
         const product = this.productRepository.create({
           ...createProductDto,
@@ -69,7 +69,7 @@ export class ProductsService {
       if (product != null) {
         return product
       } else {
-        throw new NotFoundException(`Product ${id} not exist in DB`)  
+        throw new NotFoundException(`Product ${id} not exist in DB`)
       }
     } catch (error) {
       this.handleDBExceptions(error);
@@ -107,6 +107,23 @@ export class ProductsService {
   async bestRated(limit: number = 10): Promise<any[]> {
     const products = await this.productRepository.find({
       order: { rating: 'DESC' },
+      take: limit,
+      relations: {
+        category: true
+      }
+    });
+
+    return products.map((product) => ({
+      ...product,
+      category: product.category.name
+    }))
+  }
+
+  async byCategory(categoryId: string, limit: number = 10): Promise<any[]> {
+    const products = await this.productRepository.find({
+      where: {
+        category: { id: Number(categoryId) }
+      },
       take: limit,
       relations: {
         category: true
