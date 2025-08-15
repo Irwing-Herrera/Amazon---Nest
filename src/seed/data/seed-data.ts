@@ -19,9 +19,10 @@ interface SeedProduct {
 }
 
 interface SeedUser {
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
-    fullName: string;
     roles: string[];
 }
 
@@ -79,13 +80,22 @@ export const initialData: SeedData = {
     users: [
         {
             email: 'irwing@hotmail.com',
-            fullName: 'Irwing',
+            firstName: 'Irwing',
+            lastName: 'Herrera',
+            password: bcrypt.hashSync('Melody123', 10),
+            roles: ['user']
+        },
+        {
+            email: 'allison@hotmail.com',
+            firstName: 'Allison',
+            lastName: 'Herrera',
             password: bcrypt.hashSync('Melody123', 10),
             roles: ['user', 'admin']
         },
         {
             email: 'melody@hotmail.com',
-            fullName: 'La Cachetona',
+            firstName: 'Melody',
+            lastName: 'la Cachetona',
             password: bcrypt.hashSync('Melody123', 10),
             roles: ['user']
         }
