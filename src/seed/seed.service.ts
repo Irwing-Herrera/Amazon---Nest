@@ -16,6 +16,7 @@ import { Category } from 'src/categories/entities/category.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { Banner } from 'src/banners/entities/banner.entity';
 import { Brand } from 'src/brand/entities/brand.entity';
+import { CreateShoppingCartDto } from 'src/shopping-cart/dto/create-shopping-cart.dto';
 
 
 @Injectable()
@@ -35,7 +36,9 @@ export class SeedService {
   ) {}
 
   private user: User = new User();
-  private productName: string = "";
+  private productNameOne: string = "";
+  private productNameTwo: string = "";
+  private productNameThree: string = "";
 
   async runSeed() {
     await this.deleteTables();
@@ -78,15 +81,30 @@ export class SeedService {
 
   private async insertShoppingCart() {
     const user = await this.userRepository.findOneBy({ id: this.user.id });
-    const product = await this.productRepository.findOneBy({ name: this.productName });
-    const quantity: number = 2;
+    const productOne = await this.productRepository.findOneBy({ name: this.productNameOne });
+    const productTwo = await this.productRepository.findOneBy({ name: this.productNameTwo });
+    const productThree = await this.productRepository.findOneBy({ name: this.productNameThree });
+    const createShoppingCartDto: CreateShoppingCartDto = {
+      products: [
+        {
+          productId: productOne!.id,
+          purchasePrice: productOne!.price,
+          quantity: 2
+        },
+        {
+          productId: productTwo!.id,
+          purchasePrice: productTwo!.price,
+          quantity: 1
+        },
+        {
+          productId: productThree!.id,
+          purchasePrice: productThree!.price,
+          quantity: 1
+        }
+      ]
+    }
 
-    return await this.shoppingCartService.create(user!.id, {
-      product: {
-        productId: product!.id,
-        quantity
-      }
-    })
+    return await this.shoppingCartService.create(user!.id, createShoppingCartDto)
   }
 
   private async insertBanners() {
@@ -133,7 +151,9 @@ export class SeedService {
       insertPromises.push(this.productsService.create(product));
     });
 
-    this.productName = initialData.products[0].name
+    this.productNameOne = initialData.products[0].name
+    this.productNameTwo = initialData.products[1].name
+    this.productNameThree = initialData.products[2].name
 
     return await Promise.all(insertPromises);    
   }

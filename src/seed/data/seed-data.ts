@@ -5,7 +5,7 @@ interface SeedProduct {
     description: string;
     price: number;
     quantity: number;
-    imageUrl: string;
+    imageUrl: string[];
     isActive: boolean;
     expirationDate: Date;
     tags: string;
@@ -172,7 +172,12 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 1,
             brandId: 1,
-            imageUrl: 'https://m.media-amazon.com/images/I/71gD8WdSlaL._AC_SX522_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71gD8WdSlaL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/61FqqC7aAIL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/31kUYynUawL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/31iatlBMsvL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -189,7 +194,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 1,
             brandId: 1,
-            imageUrl: 'https://m.media-amazon.com/images/I/51fK1GY9Y8L._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51fK1GY9Y8L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/51O7X09DV0L._AC_SY879_.jpg',
+                'https://m.media-amazon.com/images/I/71R1opDODBL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -206,7 +215,12 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 1,
             brandId: 1,
-            imageUrl: 'https://m.media-amazon.com/images/I/911TGUbnayL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/911TGUbnayL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/91I-eMQNwSL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/8185LZyBeqL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/91Iea9d8H3L._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -223,7 +237,12 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 2,
             brandId: 2,
-            imageUrl: 'https://m.media-amazon.com/images/I/71iD5RyhuaL._AC_SY879_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71iD5RyhuaL._AC_SY879_.jpg',
+                'https://m.media-amazon.com/images/I/81qmuxHlt2L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/81a4FkW5f0L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/81asWsst39L._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -240,7 +259,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 2,
             brandId: 2,
-            imageUrl: 'https://m.media-amazon.com/images/I/51TlYf5pPOL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51TlYf5pPOL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61rumqa14yL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61Cc7eLkowS._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -257,7 +280,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 2,
             brandId: 1,
-            imageUrl: 'https://m.media-amazon.com/images/I/61HF-nfu02L._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61HF-nfu02L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/718t83iDVBL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/81VRFJ4NbcL._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -274,7 +301,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 3,
             brandId: 3,
-            imageUrl: 'https://m.media-amazon.com/images/I/616klipzdtL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/616klipzdtL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61QS7gvhulL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/71tNPnGnJML._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -291,7 +322,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 3,
             brandId: 3,
-            imageUrl: 'https://m.media-amazon.com/images/I/51fM0CKG+HL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51fM0CKG+HL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/71nvIJY6R0L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/71Ltfk+EUaL._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -308,7 +343,12 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 3,
             brandId: 3,
-            imageUrl: 'https://m.media-amazon.com/images/I/71Q54HnKxwS._AC_SX522_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71Q54HnKxwS._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/61j05Ue8I+L._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/51zjE7FRXmL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/51c-nxAH5zL._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -325,7 +365,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 4,
             brandId: 14,
-            imageUrl: 'https://m.media-amazon.com/images/I/51aYOC-aAaL._SY342_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51aYOC-aAaL._SY342_.jpg',
+                'https://m.media-amazon.com/images/I/710DKMAI6RS._SY466_.jpg',
+                'https://m.media-amazon.com/images/I/61P+zeMEJoL._SY466_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -342,7 +386,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 4,
             brandId: 4,
-            imageUrl: 'https://m.media-amazon.com/images/I/715TnBdMrdL._SY425_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/715TnBdMrdL._SY425_.jpg',
+                'https://m.media-amazon.com/images/I/71U+R3H2NmL._SY466_.jpg',
+                'https://m.media-amazon.com/images/I/71DvoGObFpL._SY466_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -359,7 +407,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 4,
             brandId: 4,
-            imageUrl: 'https://m.media-amazon.com/images/I/61o5Q8IIq4L._SY425_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61o5Q8IIq4L._SY425_.jpg',
+                'https://m.media-amazon.com/images/I/41f9LHDfOsL._SY466_.jpg',
+                'https://m.media-amazon.com/images/I/71lV+xZyebL._SY466_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -376,7 +428,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 5,
             brandId: 5,
-            imageUrl: 'https://m.media-amazon.com/images/I/81-xkYB2izL._AC_SY445_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/81-xkYB2izL._AC_SY445_.jpg',
+                'https://m.media-amazon.com/images/I/81h3rSeCVEL._AC_SX342_.jpg',
+                'https://m.media-amazon.com/images/I/71yQBXkuGfL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -393,7 +449,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 5,
             brandId: 5,
-            imageUrl: 'https://m.media-amazon.com/images/I/71yihEh+tQL._AC_SX342_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71yihEh+tQL._AC_SX342_.jpg',
+                'https://m.media-amazon.com/images/I/61cBab9SJoL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/7150NOUoh-L._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -410,7 +470,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 5,
             brandId: 5,
-            imageUrl: 'https://m.media-amazon.com/images/I/91RLDV2lvfL._SY425_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/91RLDV2lvfL._SY425_.jpg',
+                'https://m.media-amazon.com/images/I/71wJAmC2KFL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/81szfMyUV2L._AC_SX342_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -427,7 +491,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 6,
             brandId: 6,
-            imageUrl: 'https://m.media-amazon.com/images/I/51LhqsDs8YL._AC_SX569_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51LhqsDs8YL._AC_SX569_.jpg',
+                'https://m.media-amazon.com/images/I/51Gkx6ppCPL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/5153srj+HKL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -444,7 +512,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 6,
             brandId: 16,
-            imageUrl: 'https://m.media-amazon.com/images/I/71jmfMWg6qL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71jmfMWg6qL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/71eyG9PgjXL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61imO019pvL._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -461,7 +533,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 6,
             brandId: 6,
-            imageUrl: 'https://m.media-amazon.com/images/I/61fROQk9rSL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61fROQk9rSL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/71iL2dBpwNL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/51bMRKrfPRL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -478,7 +554,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 7,
             brandId: 7,
-            imageUrl: 'https://m.media-amazon.com/images/I/71eG4+XrgZL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71eG4+XrgZL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/51aRYF93QQL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/51LIlZWRYxL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -495,7 +575,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 7,
             brandId: 7,
-            imageUrl: 'https://m.media-amazon.com/images/I/517sgMtdqyL._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/517sgMtdqyL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/71WaERCH1jL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61v1wHudIaL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: 'Funda',
@@ -512,7 +596,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 7,
             brandId: 7,
-            imageUrl: 'https://m.media-amazon.com/images/I/61c+iXXok7L._AC_SX679_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61c+iXXok7L._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61aU03LFvqL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61dA2Kd9SJL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -529,7 +617,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 8,
             brandId: 8,
-            imageUrl: 'https://m.media-amazon.com/images/I/61sxt5xREwL._AC_SY550_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61sxt5xREwL._AC_SY550_.jpg',
+                'https://m.media-amazon.com/images/I/61kKx4WFYvL._AC_SY741_.jpg',
+                'https://m.media-amazon.com/images/I/71JlmuddrfL._AC_SY741_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -546,7 +638,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 8,
             brandId: 8,
-            imageUrl: 'https://m.media-amazon.com/images/I/61jOOFtyIqL._AC_SX466_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61jOOFtyIqL._AC_SX466_.jpg',
+                'https://m.media-amazon.com/images/I/71WcsWxCH5L._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/61Z4EKEMXKL._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -563,7 +659,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 8,
             brandId: 8,
-            imageUrl: 'https://m.media-amazon.com/images/I/81rpkUQV3BL._AC_SX425_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/81rpkUQV3BL._AC_SX425_.jpg',
+                'https://m.media-amazon.com/images/I/61Q43GskAeL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/61L0TJliUhL._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -580,7 +680,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 9,
             brandId: 9,
-            imageUrl: 'https://m.media-amazon.com/images/I/51Ub2J1C4EL._AC_SX466_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/51Ub2J1C4EL._AC_SX466_.jpg',
+                'https://m.media-amazon.com/images/I/61vQtmWsnKL._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/71JWu8Ql9nL._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -597,7 +701,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 9,
             brandId: 9,
-            imageUrl: 'https://m.media-amazon.com/images/I/81BOzINmiRL._AC_SX466_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/81BOzINmiRL._AC_SX466_.jpg',
+                'https://m.media-amazon.com/images/I/61xAZagm4ML._AC_SX522_.jpg',
+                'https://m.media-amazon.com/images/I/614mldmU64L._AC_SX522_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -614,7 +722,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 9,
             brandId: 9,
-            imageUrl: 'https://m.media-amazon.com/images/I/71hE7IvdPvL.js?AUIClients/FWCIMAssets',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71hE7IvdPvL.js?AUIClients/FWCIMAssets',
+                'https://m.media-amazon.com/images/I/71BhjoEWZDL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/81a77Qeo3LL._AC_SX679_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -631,7 +743,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 10,
             brandId: 10,
-            imageUrl: 'https://m.media-amazon.com/images/I/71rxUxkuWcL._AC_SX625_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/71rxUxkuWcL._AC_SX625_.jpg',
+                'https://m.media-amazon.com/images/I/81rrn1ZqJnL._AC_SX695_.jpg',
+                'https://m.media-amazon.com/images/I/81vwDkdFX2L._AC_SX695_.jpg'
+            ],
             isActive: true,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -648,7 +764,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 10,
             brandId: 10,
-            imageUrl: 'https://m.media-amazon.com/images/I/614sOCBnHfL._AC_SX569_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/614sOCBnHfL._AC_SX569_.jpg',
+                'https://m.media-amazon.com/images/I/81h218Kxc0L._AC_SX569_.jpg',
+                'https://m.media-amazon.com/images/I/71H+WimbJvL._AC_SX569_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',
@@ -665,7 +785,11 @@ export const initialData: SeedData = {
             quantity: randomCuantity(),
             categoryId: 10,
             brandId: 10,
-            imageUrl: 'https://m.media-amazon.com/images/I/61Au4OfOZtL._AC_SY741_.jpg',
+            imageUrl: [
+                'https://m.media-amazon.com/images/I/61Au4OfOZtL._AC_SY741_.jpg',
+                'https://m.media-amazon.com/images/I/61TLDZI0+FL._AC_SX679_.jpg',
+                'https://m.media-amazon.com/images/I/61B6GpAcEuL._AC_SX679_.jpg'
+            ],
             isActive: false,
             expirationDate: new Date('2025-12-31'),
             tags: '',

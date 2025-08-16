@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsDate, isDate, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength } from 'class-validator';
+import { IsBoolean, IsDate, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength } from 'class-validator';
 import { Column } from 'typeorm';
 
 export class CreateProductDto {
@@ -22,7 +22,7 @@ export class CreateProductDto {
 
     @IsString()
     @IsOptional()
-    imageUrl: string;
+    imageUrl: string[];
 
     @IsBoolean()
     isActive: boolean;
