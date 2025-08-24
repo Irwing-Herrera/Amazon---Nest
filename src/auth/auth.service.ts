@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto, LoginUserDto } from './dto';
 import { JwtPayload } from './interfaces';
 import { JwtService } from '@nestjs/jwt';
+import { ViewedProduct } from 'src/products/entities/viewed-product.entity';
 
 @Injectable()
 export class AuthService {
@@ -17,8 +18,8 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    private readonly jwtService: JwtService
-  ) {}
+    private readonly jwtService: JwtService,
+  ) { }
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -26,12 +27,12 @@ export class AuthService {
 
       const user = this.userRepository.create({
         ...userData,
-        password: bcrypt.hashSync( password, 10 )
+        password: bcrypt.hashSync(password, 10)
       });
 
       await this.userRepository.save(user);
       delete (user as any).password;
-      
+
       return {
         ...user,
         token: this.getJwtToken({ id: user.id })
@@ -52,13 +53,13 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Credentials are not valid (email)');
     }
-      
+
     if (!bcrypt.compareSync(password, user.password)) {
       throw new UnauthorizedException('Credentials are not valid (password)');
     }
-    
+
     delete (user as any).password;
-    
+
     return {
       ...user,
       token: this.getJwtToken({ id: user.id })
@@ -76,17 +77,45 @@ export class AuthService {
   async findUserAndShoppingCart(id: string): Promise<any> {
     try {
       return this.userRepository
-          .createQueryBuilder('users')
-          .innerJoinAndSelect('users.shoppingCarts', 'shopping_cart')
-          .where('users.id = :id', { id })
-          .getMany();
+        .createQueryBuilder('users')
+        .innerJoinAndSelect('users.shoppingCarts', 'shopping_cart')
+        .where('users.id = :id', { id })
+        .getMany();
+    } catch (error) {
+      throw new NotFoundException(`User not exist in DB ${id}`)
+    }
+  }
+
+  async getHistory(id: string): Promise<any> {
+    try {
+      let history = await this.userRepository
+        .createQueryBuilder('users')
+        .innerJoinAndSelect('users.viewedProducts', 'viewed_products')
+        .leftJoinAndMapOne('viewed_products.product', 'product', 'product', 'product.id = viewed_products.product')
+        .where('users.id = :id', { id })
+        .orderBy('viewed_products.viewedAt', 'DESC')
+        .getOne();
+
+      return history!.viewedProducts.map((item: ViewedProduct) => {
+        delete (item as any).user
+        return {
+          ...item,
+          product: {
+            id: item.product.id,
+            name: item.product.name,
+            price: item.product.price,
+            images: item.product.imageUrl
+          },
+          viewedAt: item.viewedAt
+        }
+      });
     } catch (error) {
       throw new NotFoundException(`User not exist in DB ${id}`)
     }
   }
 
   private getJwtToken(payload: JwtPayload) {
-    return this.jwtService.sign( payload );
+    return this.jwtService.sign(payload);
   }
 
   async deleteAllUsers() {
@@ -94,8 +123,8 @@ export class AuthService {
 
     try {
       return await query.delete()
-                        .where({})
-                        .execute();
+        .where({})
+        .execute();
 
     } catch (error) {
       this.handleDBErrors(error);
@@ -105,10 +134,10 @@ export class AuthService {
   private handleDBErrors(error: any): never {
     this.logger.error(error)
 
-    if ( error.code === '23505' ) {
-      throw new BadRequestException( error.detail );
+    if (error.code === '23505') {
+      throw new BadRequestException(error.detail);
     }
-    
+
     throw new InternalServerErrorException('Please check server logs');
   }
 }

@@ -53,7 +53,7 @@ export class ShoppingCartService {
       // Por cada producto se crea una instancia de ShoppingCartProduct
       const _ = await createShoppingCartDto.products.forEach(async (ShoppingCartProduct: any) => {
         const { productId, quantity, purchasePrice } = ShoppingCartProduct;
-        const product: Product = await this.productsService.findById(productId);
+        const product: Product = await this.productsService.findById(undefined, productId);
 
         const _ = await this.saveShoppingCartProduct(
           shoppingCart,

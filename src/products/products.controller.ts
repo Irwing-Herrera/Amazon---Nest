@@ -3,8 +3,9 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { Auth } from 'src/auth/decorators';
+import { Auth, GetUser } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/interfaces';
+import { User } from 'src/auth/entities/user.entity';
 
 @ApiTags('Products')
 @Controller('products')
@@ -46,7 +47,7 @@ export class ProductsController {
 
   @Get(':id')
   @Auth(ValidRoles.user)
-  async findOne(@Param('id') id: string) {
-    return this.productsService.findById(id);
+  async findOne(@GetUser() user: User, @Param('id') id: string) {
+    return this.productsService.findById(user, id);
   }
 }

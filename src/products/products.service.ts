@@ -1,14 +1,18 @@
 import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 import { CreateProductDto } from './dto/create-product.dto';
-import { Product } from './entities/product.entity';
+
 import { CategoriesService } from 'src/categories/categories.service';
 import { BrandService } from 'src/brand/brand.service';
+
+import { Product } from './entities/product.entity';
 import { Category } from 'src/categories/entities/category.entity';
 import { Brand } from 'src/brand/entities/brand.entity';
+import { User } from 'src/auth/entities/user.entity';
+import { ViewedProduct } from 'src/products/entities/viewed-product.entity';
+import { ViewedProductService } from './viewed-products.service';
 
 @Injectable()
 export class ProductsService {
@@ -19,7 +23,8 @@ export class ProductsService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
     private readonly categoriesService: CategoriesService,
-    private readonly brandService: BrandService
+    private readonly brandService: BrandService,
+    private readonly viewedProductService: ViewedProductService
   ) { }
 
   async create(createProductDto: CreateProductDto): Promise<any> {
@@ -63,10 +68,13 @@ export class ProductsService {
     }))
   }
 
-  async findById(id: string): Promise<any> {
+  async findById(user: User | undefined, id: string): Promise<any> {
     try {
       const product = await this.productRepository.findOneBy({ id })
       if (product != null) {
+        if (user != undefined) {
+          this.viewedProductService.addRecord(product, user);
+        }
         return product
       } else {
         throw new NotFoundException(`Product ${id} not exist in DB`)

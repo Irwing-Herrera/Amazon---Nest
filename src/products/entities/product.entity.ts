@@ -3,6 +3,7 @@ import { Brand } from 'src/brand/entities/brand.entity';
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { ShoppingCart } from 'src/shopping-cart/entities/shopping-cart.entity';
 import { ShoppingCartProduct } from './shopping-cart-product.entity';
+import { ViewedProduct } from './viewed-product.entity';
 
 @Entity()
 export class Product {
@@ -78,5 +79,9 @@ export class Product {
     // Esto permite consultar desde el producto en qué carritos ha sido incluido y facilita las relaciones bidireccionales.
     @OneToMany(() => ShoppingCartProduct, (scp) => scp.product)
     shoppingCartProducts: ShoppingCartProduct[];
+
+    // Usuarios que han visualizado este producto.
+    @OneToMany(() => ViewedProduct, (viewedProduct) => viewedProduct.product)
+    viewedBy: ViewedProduct[];
 }
 

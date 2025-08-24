@@ -1,3 +1,4 @@
+import { ViewedProduct } from "src/products/entities/viewed-product.entity";
 import { ShoppingCart } from "src/shopping-cart/entities/shopping-cart.entity";
 import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -29,6 +30,10 @@ export class User {
 
     @OneToMany(() => ShoppingCart, (shoppingCart) => shoppingCart.user, { cascade: true })
     shoppingCarts: ShoppingCart[];
+
+    // Productos visualizados por el usuario.
+    @OneToMany(() => ViewedProduct, (viewedProduct) => viewedProduct.user, { cascade: true })
+    viewedProducts: ViewedProduct[];
 
     @BeforeInsert()
     checkFieldsBeforeInsert() {

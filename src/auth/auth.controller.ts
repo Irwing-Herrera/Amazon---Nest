@@ -28,4 +28,10 @@ export class AuthController {
   getInfoUser(@GetUser() user: User) {
     return this.authService.findUserAndShoppingCart(user.id)
   }
+
+  @Get('history')
+  @Auth(ValidRoles.user)
+  getHistoryProducts(@GetUser() user: User) {
+    return this.authService.getHistory(user.id)
+  }
 }
