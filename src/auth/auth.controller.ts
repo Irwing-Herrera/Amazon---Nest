@@ -23,6 +23,13 @@ export class AuthController {
     return this.authService.login( loginUserDto );
   }
 
+  @Post('logout')
+  @Auth(ValidRoles.user)
+  logout(@GetUser() user: User) {
+    // Aquí se puede implementar lógica para invalidar el token (ejemplo: agregarlo a una blacklist)
+    return { message: 'Sesión cerrada correctamente' };
+  }
+
   @Get('user')
   @Auth(ValidRoles.user)
   getInfoUser(@GetUser() user: User) {
