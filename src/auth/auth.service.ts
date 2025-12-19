@@ -127,7 +127,7 @@ export class AuthService {
         .execute();
 
     } catch (error) {
-      this.handleDBErrors(error);
+      
     }
   }
 

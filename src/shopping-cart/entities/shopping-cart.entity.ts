@@ -19,11 +19,11 @@ export class ShoppingCart {
 
     // Fecha de creación del carrito de compras.
     @CreateDateColumn({ type: 'timestamp' })
-    createdAt: Date;
+    createdAt: Date | null;
 
     // Fecha de actualización del carrito de compras.
     @UpdateDateColumn({ type: 'timestamp' })
-    updatedAt: Date;
+    updatedAt: Date | null;
 
     // Fecha estimada de entrega.
     @Column({ type: 'timestamp', nullable: true })
@@ -34,7 +34,7 @@ export class ShoppingCart {
     deliveryTracking: { status: string; date: Date }[] | null;
 
     // Trazabilidad de cada compra.
-    @Column({ type: 'varchar', length: 50, unique: true })
+    @Column({ type: 'varchar', length: 50, unique: true, nullable: true })
     orderNumber: string;
 
     // Cantidad total de productos en el carrito.

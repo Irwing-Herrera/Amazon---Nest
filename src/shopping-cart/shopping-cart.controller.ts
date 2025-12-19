@@ -13,18 +13,12 @@ export class ShoppingCartController {
   @Post()
   @Auth(ValidRoles.user)
   create(@GetUser() user: User, @Body() createShoppingCartDto: CreateShoppingCartDto) {
-    return this.shoppingCartService.create(user.id, createShoppingCartDto);
+    return this.shoppingCartService.createCart(user.id, createShoppingCartDto);
   }
 
   @Get()
   @Auth(ValidRoles.user)
-  findAllByUserId(@GetUser() user: User) {
-    return this.shoppingCartService.findAllByUserId(user.id);
-  }
-
-  @Get(':orderNumber')
-  @Auth(ValidRoles.user)
-  findOneByUserIdAndOrderNumber(@GetUser() user: User, @Param('orderNumber') orderNumber: string) {
-    return this.shoppingCartService.findOneByUserIdAndOrderNumber(user.id, orderNumber);
+  findCartByUserId(@GetUser() user: User) {
+    return this.shoppingCartService.findCartByUserId(user.id);
   }
 }

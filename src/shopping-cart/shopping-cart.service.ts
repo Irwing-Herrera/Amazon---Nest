@@ -12,6 +12,7 @@ import { User } from 'src/auth/entities/user.entity';
 import { ShoppingCart } from './entities/shopping-cart.entity';
 import { ShoppingCartProduct } from 'src/products/entities/shopping-cart-product.entity';
 import { Product } from 'src/products/entities/product.entity';
+import { ShoppingCartStatus } from './enums/shopping-cart-status';
 
 @Injectable()
 export class ShoppingCartService {
@@ -27,7 +28,7 @@ export class ShoppingCartService {
     private readonly productsService: ProductsService
   ) { }
 
-  async create(userId: string, createShoppingCartDto: CreateShoppingCartDto): Promise<any> {
+  async createCart(userId: string, createShoppingCartDto: CreateShoppingCartDto): Promise<any> {
     try {
       const user: User = await this.userService.findById(userId);
 
@@ -40,87 +41,66 @@ export class ShoppingCartService {
 
       const cart: ShoppingCart = await this.shoppingCartRepository.create({
         user: user,
+        deliveryTracking: null,
+        status: ShoppingCartStatus.ACTIVO,
         totalPrice: totalPrice,
-        updatedAt: new Date(),
-        deliveryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Suma 7 días a la fecha actual
-        deliveryTracking: [{ status: 'Preparando tu paquete', date: new Date() }],
-        orderNumber: `${Date.now()}`,
         totalProducts: totalProducts
       });
 
       // Guardar el carrito de compras
       const shoppingCart: ShoppingCart = await this.shoppingCartRepository.save(cart);
       // Por cada producto se crea una instancia de ShoppingCartProduct
-      const _ = await createShoppingCartDto.products.forEach(async (ShoppingCartProduct: any) => {
-        const { productId, quantity, purchasePrice } = ShoppingCartProduct;
+      for (const cardProduct of createShoppingCartDto.products) {
+        const { productId, quantity, purchasePrice } = cardProduct;
         const product: Product = await this.productsService.findById(undefined, productId);
 
-        const _ = await this.saveShoppingCartProduct(
+        await this.saveShoppingCartProduct(
           shoppingCart,
           product,
           quantity,
           purchasePrice
         );
-      });
+      }
+
       return {
-          ...shoppingCart,
-          user: user.email,
-        }
+        ...shoppingCart,
+        user: user.email,
+      }
     } catch (error) {
       this.handleDBExceptions(error);
     }
   }
 
 
-  // Método para obtener todas la compras de un usuario
-  async findAllByUserId(userId: string) {
+  // Método para obtener el carrito de compras por userId
+  async findCartByUserId(userId: string) {
     try {
       if (isUUID(userId)) {
 
-        const shoppingCart: ShoppingCart[] = await this.shoppingCartRepository
+        const shoppingCart: ShoppingCart | null = await this.shoppingCartRepository
           .createQueryBuilder('shopping_cart')
           .innerJoinAndSelect('shopping_cart.shoppingCartProducts', 'shopping_cart_product')
           .innerJoinAndSelect('shopping_cart_product.product', 'product')
           .where('shopping_cart.user.id = :userId', { userId })
-          .getMany();
-        
-        let _cart: any[] = shoppingCart.map(cart => ({
-          ...cart,
-          shoppingCartProducts: cart.shoppingCartProducts.map(scp => ({
+          .andWhere('shopping_cart.status = :status', { status: ShoppingCartStatus.ACTIVO })
+          .getOne();
+
+        let _cart: any = shoppingCart ? {
+          ...shoppingCart,
+          shoppingCartProducts: shoppingCart.shoppingCartProducts.map(scp => ({
             ...scp,
             product: {
               name: scp.product.name,
               imageUrl: scp.product.imageUrl[0]
             }
           }))
-        }));
+        } : null;
+
         return _cart
       } else {
         throw new InternalServerErrorException(`UserId isn't UUID`);
       }
     } catch (error) {
-      this.handleDBExceptions(error);
-    }
-  }
-
-  async findOneByUserIdAndOrderNumber(userId: string, orderNumber: string) {
-    try {
-      if (isUUID(userId) && orderNumber) {
-        const shoppingCart: ShoppingCart | null = await this.shoppingCartRepository
-          .createQueryBuilder('shopping_cart')
-          .innerJoinAndSelect('shopping_cart.shoppingCartProducts', 'shopping_cart_product')
-          .innerJoinAndSelect('shopping_cart_product.product', 'product')
-          .where('shopping_cart.user.id = :userId', { userId })
-          .andWhere('shopping_cart.orderNumber = :orderNumber', { orderNumber })
-          .getOne();
-
-        if (shoppingCart === null) {
-          throw new BadRequestException(`Shopping cart with order number ${orderNumber} not found for user ${userId}`);
-        } else {
-          return shoppingCart;
-        }
-      }
-    }catch (error) {
       this.handleDBExceptions(error);
     }
   }

@@ -83,28 +83,22 @@ export class SeedService {
     const user = await this.userRepository.findOneBy({ id: this.user.id });
     const productOne = await this.productRepository.findOneBy({ name: this.productNameOne });
     const productTwo = await this.productRepository.findOneBy({ name: this.productNameTwo });
-    const productThree = await this.productRepository.findOneBy({ name: this.productNameThree });
     const createShoppingCartDto: CreateShoppingCartDto = {
       products: [
         {
           productId: productOne!.id,
           purchasePrice: productOne!.price,
-          quantity: 2
+          quantity: 1
         },
         {
           productId: productTwo!.id,
           purchasePrice: productTwo!.price,
           quantity: 1
-        },
-        {
-          productId: productThree!.id,
-          purchasePrice: productThree!.price,
-          quantity: 1
         }
       ]
     }
 
-    return await this.shoppingCartService.create(user!.id, createShoppingCartDto)
+    return await this.shoppingCartService.createCart(user!.id, createShoppingCartDto)
   }
 
   private async insertBanners() {
