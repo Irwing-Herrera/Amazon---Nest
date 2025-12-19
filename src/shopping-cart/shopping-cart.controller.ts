@@ -21,4 +21,10 @@ export class ShoppingCartController {
   findCartByUserId(@GetUser() user: User) {
     return this.shoppingCartService.findCartByUserId(user.id);
   }
+
+  @Post('add-product')
+  @Auth(ValidRoles.user)
+  addProductToCart(@GetUser() user: User, @Body() addShoppingCartDto: CreateShoppingCartDto) {
+    return this.shoppingCartService.addProductToCart(user.id, addShoppingCartDto);
+  }
 }
