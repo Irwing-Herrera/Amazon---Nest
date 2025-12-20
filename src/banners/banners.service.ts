@@ -60,7 +60,6 @@ export class BannersService {
       await query.delete().where({}).execute();
       return
     } catch (error) {
-      this.handleDBExceptions(error);
     }
   }
 

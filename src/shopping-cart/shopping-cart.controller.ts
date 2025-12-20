@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 
 import { ShoppingCartService } from './shopping-cart.service';
 import { Auth, GetUser } from 'src/auth/decorators';
@@ -26,5 +26,11 @@ export class ShoppingCartController {
   @Auth(ValidRoles.user)
   addProductToCart(@GetUser() user: User, @Body() addShoppingCartDto: CreateShoppingCartDto) {
     return this.shoppingCartService.addProductToCart(user.id, addShoppingCartDto);
+  }
+
+  @Delete(':productId')
+  @Auth(ValidRoles.user)
+  deleteProductFromCart(@GetUser() user: User, @Param('productId') productId: string) {
+    return this.shoppingCartService.deleteProductFromCart(user.id, productId);
   }
 }

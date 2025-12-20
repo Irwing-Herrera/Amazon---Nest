@@ -51,7 +51,6 @@ export class BrandService{
       await this.brandRepository.query(`ALTER SEQUENCE brand_id_seq RESTART WITH 1`);
       return
     } catch (error) {
-      this.handleDBExceptions(error);
     }
   }
 }

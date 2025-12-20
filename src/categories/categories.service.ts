@@ -44,7 +44,6 @@ export class CategoriesService {
       await this.categoryRepository.query(`ALTER SEQUENCE category_id_seq RESTART WITH 1`);
       return
     } catch (error) {
-      this.handleDBExceptions(error);
     }
   }
 

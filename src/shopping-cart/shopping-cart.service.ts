@@ -138,7 +138,8 @@ export class ShoppingCartService {
             ...scp,
             product: {
               name: scp.product.name,
-              imageUrl: scp.product.imageUrl[0]
+              imageUrl: scp.product.imageUrl[0],
+              id: scp.product.id
             }
           }))
         } : null;
@@ -147,6 +148,44 @@ export class ShoppingCartService {
       } else {
         throw new InternalServerErrorException(`UserId isn't UUID`);
       }
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
+  }
+
+  // Método para eliminar un producto del carrito de compras
+  async deleteProductFromCart(userId: string, productId: string) {
+    try {
+      const shoppingCart: ShoppingCart | null = await this.findCartByUserId(userId);
+
+      if (!shoppingCart) {
+        throw new NotFoundException(`Shopping cart not found for user ${userId}`);
+      }
+
+      const shoppingCartProduct: ShoppingCartProduct | undefined = shoppingCart.shoppingCartProducts.find(scp => scp.product.id === productId);
+
+      if (!shoppingCartProduct) {
+        throw new NotFoundException(`Product ${productId} not found in shopping cart`);
+      }
+
+      await this.shoppingCartProductRepository.delete(shoppingCartProduct.id);
+
+      shoppingCart.totalPrice -= shoppingCartProduct.purchasePrice * shoppingCartProduct.quantity;
+      shoppingCart.totalProducts -= shoppingCartProduct.quantity;
+
+      await this.shoppingCartRepository.update(shoppingCart.id, {
+        totalPrice: shoppingCart.totalPrice,
+        totalProducts: shoppingCart.totalProducts
+      });
+
+      // Buscar el carrito actualizado
+      const updatedCart: ShoppingCart | null = await this.findCartByUserId(userId);
+      const user: User = await this.userService.findById(userId);
+
+      return {
+        ...updatedCart,
+        user: user.email,
+      };
     } catch (error) {
       this.handleDBExceptions(error);
     }
